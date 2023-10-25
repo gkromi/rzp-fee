@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RazorPay Fee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        if (document.readyState == "loading") {
+            window.addEventListener('DOMContentLoaded', (event) => {
+                run_int();
+            });
+        } else {
+            run_int();
+        }
+        function run_int() {
+            var in1 = document.getElementsByClassName("inputOne")[0];
+            var in6 = document.getElementsByClassName("inputSix")[0];
+            in1.addEventListener('keyup', update_6);
+            in6.addEventListener('keyup', update_1);
+        }
+        function update_6(event) {
+            var in_one = event.target;
+            var input_one = parseFloat(document.getElementsByClassName("inputOne")[0].value);
+            document.getElementById("outputThree").value = input_one * 0.02;
+            document.getElementById("outputFour").value = input_one * 0.0036;
+            document.getElementById("outputSix").value = input_one * 0.9764;
+        }
+        function update_1(event) {
+            var in_one = event.target;
+            var input_six = parseFloat(document.getElementsByClassName("inputSix")[0].value);
+            document.getElementById("outputOne").value = input_six / 0.9764;
+            var input_one = parseFloat(document.getElementsByClassName("inputOne")[0].value);
+            document.getElementById("outputThree").value = input_one * 0.02;
+            document.getElementById("outputFour").value = input_one * 0.0036;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <br />
+        <div class="card">
+            <div class="card-header">
+                <strong> Razorpay Fee Calculator </strong>
+            </div>
+            <div class="card-body">
+                <div class="input-group">
+                    <label for="outputOne" class="input-group-text">Product Cost</label>
+                    <input type="text" class="form-control inputOne" id="outputOne" />
+                </div><br />
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group">
+                            <label for="outputThree" class="input-group-text">Process fee</label>
+                            <input type="text" class="form-control" id="outputThree" readonly />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group">
+                            <label for="outputFive" class="input-group-text">Pro. GST fee</label>
+                            <input type="text" class="form-control" id="outputFour" readonly />
+                        </div>
+                    </div>
+                </div><br />
+                <div class="input-group">
+                    <label for="outputSix" class="input-group-text">Amount Credit</label>
+                    <input type="text" class="form-control inputSix" id="outputSix" />
+                </div><br />
+            </div>
+            <div class="card-footer">
+                <small> Enter Cost/Credit Amount </small>
+            </div>
+        </div>
+    </div>
+    <script>
+        run_int();
+    </script>
+</body>
+</html>
